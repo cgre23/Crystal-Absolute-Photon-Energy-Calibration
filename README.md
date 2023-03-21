@@ -1,6 +1,5 @@
-# Crystal-Absolute-Energy-Calibration
-## Absolute Photon Energy Calibration Method for Hard X-Ray FELs using Crystals
-#### Contributors: Christian Grech, Marc Guetg, Gianluca Geloni (MXL, DESY and EuXFEL)
+### Absolute Photon Energy Calibration Method for Hard X-Ray FELs using Crystals
+##### Contributors: Christian Grech, Marc Guetg, Gianluca Geloni (MXL, DESY and EuXFEL)
  
 Contents:
 - Hough_Transform_PoC.ipynb = using hough transform line detection to determine photon energy calibration error;
