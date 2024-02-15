@@ -11,7 +11,7 @@ import numpy as np
 import time
 import logging
 
-def Bragg_plotter_limit(hmax, kmax, lmax, dthp, dthy, dthr, alpha, roll, minang, maxang, points):
+def Bragg_plotter_limit(hmax, kmax, lmax, dthp, dthy, dthr, alpha, roll, pitch_list):
     p_angle_list=[]
     phen_list=[]
     label_list=[]
@@ -127,8 +127,6 @@ def Bragg_plotter_limit(hmax, kmax, lmax, dthp, dthy, dthr, alpha, roll, minang,
         linestyle=str(simbolo)
         label=str('['+str(h)+str(k)+str(l)+']'.format([h,k,l]))
         thplist_f=thplist+DTHP
-        
-        
         return thplist_f, eevlist, label, linestyle, gid, color
 
     #User defined quantities
@@ -149,11 +147,11 @@ def Bragg_plotter_limit(hmax, kmax, lmax, dthp, dthy, dthr, alpha, roll, minang,
     eel = 1.60217657e-19
     
     fact = 2*np.pi*clight*hbar/eel
-    
-    thplist=np.linspace(minang,maxang,points) 
+    DTHP = dthp#-0.6921-0.09
+    thplist=pitch_list#np.linspace(minang,maxang,points) 
     eevlist=np.zeros(len(thplist))    
     
-    DTHP = dthp#-0.6921-0.09
+    
     DTHY = dthy+(alpha*thplist)    #15#15#0#-0.15#-0.39#-0.15 #0.0885
     DTHR = dthr
     thylist=(-DTHY+roll)/180*np.pi                 #######AMERICAN YAW DEFINITION 
@@ -161,9 +159,8 @@ def Bragg_plotter_limit(hmax, kmax, lmax, dthp, dthy, dthr, alpha, roll, minang,
     #print(DTHP, dthy, DTHR, alpha)
     
     counter=0
-    
     nord=1
-    
+
     for h in range(0,hmax+1):
         for k in range(-kmax,kmax+1):
             for l in range(-lmax,lmax+1):
@@ -182,5 +179,4 @@ def Bragg_plotter_limit(hmax, kmax, lmax, dthp, dthy, dthr, alpha, roll, minang,
                         gid_list.append(str(gid))
                         color_list.append(color)
     #plotene(thplist,fact,nord,3,3,7,a,DTHP,thy,thr,n0,pitchax,rollax,yawax)                
-    return phen_list, p_angle_list, gid_list, linestyle_list, color_list           
-
+    return phen_list, p_angle_list, gid_list, linestyle_list, color_list  
